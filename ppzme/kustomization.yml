@@ -1,0 +1,8 @@
+bases:
+- ../variants/scale-3-3-nopzoo
+resources:
+- 10topics-config.yml
+- 20topics-create.yml
+patchesStrategicMerge:
+- kafka-node-selector.yml
+- zookeeper-node-selector.yml
