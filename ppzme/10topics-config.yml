@@ -1,0 +1,16 @@
+kind: ConfigMap
+metadata:
+  name: topics-config
+  namespace: kafka
+apiVersion: v1
+data:
+  create-topics.sh: |-
+    #!/bin/bash
+    set -e
+    set -x
+    
+    ./bin/kafka-topics.sh --zookeeper zookeeper.kafka.svc.cluster.local:2181 --create --if-not-exists --topic test1 --partitions 3 --replication-factor 2
+    ./bin/kafka-topics.sh --zookeeper zookeeper.kafka.svc.cluster.local:2181 --create --if-not-exists --topic test2 --partitions 3 --replication-factor 2
+    ./bin/kafka-topics.sh --zookeeper zookeeper.kafka.svc.cluster.local:2181 --create --if-not-exists --topic test3 --partitions 3 --replication-factor 2
+    
+    ./bin/kafka-topics.sh --zookeeper zookeeper.kafka.svc.cluster.local:2181 --list
