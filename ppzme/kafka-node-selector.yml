@@ -1,0 +1,15 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: kafka
+  namespace: kafka
+spec:
+  template:
+    spec:
+      nodeSelector:
+        cloud.google.com/gke-nodepool: "kafka-pool"
+      tolerations:
+      - key: "gke-nodepool"
+        operator: "Equal"
+        value: "kafka-pool"
+        effect: "NoSchedule"
