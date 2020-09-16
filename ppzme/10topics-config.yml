@@ -8,39 +8,45 @@ data:
     #!/bin/bash
     set -e
     set -x
-    
-    ./bin/kafka-topics.sh --zookeeper zookeeper.kafka.svc.cluster.local:2181 --create --if-not-exists --topic virtual-users --partitions 99 --replication- factor 3
-    ./bin/kafka-topics.sh --zookeeper zookeeper.kafka.svc.cluster.local:2181 --create --if-not-exists --topic find-me --partitions 99 --replication- factor 3
-    ./bin/kafka-topics.sh --zookeeper zookeeper.kafka.svc.cluster.local:2181 --create --if-not-exists --topic tag-maker --partitions 99 --replication- factor 3
-    ./bin/kafka-topics.sh --zookeeper zookeeper.kafka.svc.cluster.local:2181 --create --if-not-exists --topic recognizer-virtual-users --partitions 99 --replication- factor 3
-    ./bin/kafka-topics.sh --zookeeper zookeeper.kafka.svc.cluster.local:2181 --create --if-not-exists --topic signin-log --partitions 99 --replication- factor 3
-    ./bin/kafka-topics.sh --zookeeper zookeeper.kafka.svc.cluster.local:2181 --create --if-not-exists --topic recognizer-real-time --partitions 99 --replication- factor 3
-    ./bin/kafka-topics.sh --zookeeper zookeeper.kafka.svc.cluster.local:2181 --create --if-not-exists --topic similarity --partitions 99 --replication- factor 3
-    ./bin/kafka-topics.sh --zookeeper zookeeper.kafka.svc.cluster.local:2181 --create --if-not-exists --topic recognizer-batch --partitions 99 --replication- factor 3
-    ./bin/kafka-topics.sh --zookeeper zookeeper.kafka.svc.cluster.local:2181 --create --if-not-exists --topic recognizer-best-effort --partitions 99 --replication- factor 3
-    ./bin/kafka-topics.sh --zookeeper zookeeper.kafka.svc.cluster.local:2181 --create --if-not-exists --topic recognition-results --partitions 99 --replication- factor 3
-    ./bin/kafka-topics.sh --zookeeper zookeeper.kafka.svc.cluster.local:2181 --create --if-not-exists --topic recognition-knn5-results --partitions 99 --replication- factor 3
-    ./bin/kafka-topics.sh --zookeeper zookeeper.kafka.svc.cluster.local:2181 --create --if-not-exists --topic recognition-knn5ex-results --partitions 99 --replication- factor 3
-    ./bin/kafka-topics.sh --zookeeper zookeeper.kafka.svc.cluster.local:2181 --create --if-not-exists --topic recognition-knn20-results --partitions 99 --replication- factor 3
-    ./bin/kafka-topics.sh --zookeeper zookeeper.kafka.svc.cluster.local:2181 --create --if-not-exists --topic recognition-aws-results --partitions 99 --replication- factor 3
-    ./bin/kafka-topics.sh --zookeeper zookeeper.kafka.svc.cluster.local:2181 --create --if-not-exists --topic new-locations --partitions 99 --replication- factor 3
-    ./bin/kafka-topics.sh --zookeeper zookeeper.kafka.svc.cluster.local:2181 --create --if-not-exists --topic upload-requests --partitions 99 --replication- factor 3
-    ./bin/kafka-topics.sh --zookeeper zookeeper.kafka.svc.cluster.local:2181 --create --if-not-exists --topic resize-requests --partitions 99 --replication- factor 3
-    ./bin/kafka-topics.sh --zookeeper zookeeper.kafka.svc.cluster.local:2181 --create --if-not-exists --topic transformation-requests --partitions 99 --replication- factor 3
-    ./bin/kafka-topics.sh --zookeeper zookeeper.kafka.svc.cluster.local:2181 --create --if-not-exists --topic new-web-images --partitions 99 --replication- factor 3
-    ./bin/kafka-topics.sh --zookeeper zookeeper.kafka.svc.cluster.local:2181 --create --if-not-exists --topic picture-changed --partitions 99 --replication- factor 3
-    ./bin/kafka-topics.sh --zookeeper zookeeper.kafka.svc.cluster.local:2181 --create --if-not-exists --topic new-picture --partitions 99 --replication- factor 3
-    ./bin/kafka-topics.sh --zookeeper zookeeper.kafka.svc.cluster.local:2181 --create --if-not-exists --topic delete-file --partitions 99 --replication- factor 3
-    ./bin/kafka-topics.sh --zookeeper zookeeper.kafka.svc.cluster.local:2181 --create --if-not-exists --topic picture-removed --partitions 99 --replication- factor 3
-    ./bin/kafka-topics.sh --zookeeper zookeeper.kafka.svc.cluster.local:2181 --create --if-not-exists --topic new-video --partitions 99 --replication- factor 3
-    ./bin/kafka-topics.sh --zookeeper zookeeper.kafka.svc.cluster.local:2181 --create --if-not-exists --topic new-video-web --partitions 99 --replication- factor 3
-    ./bin/kafka-topics.sh --zookeeper zookeeper.kafka.svc.cluster.local:2181 --create --if-not-exists --topic new-signin-media --partitions 99 --replication- factor 3
-    ./bin/kafka-topics.sh --zookeeper zookeeper.kafka.svc.cluster.local:2181 --create --if-not-exists --topic add-user-domain --partitions 99 --replication- factor 3
-    ./bin/kafka-topics.sh --zookeeper zookeeper.kafka.svc.cluster.local:2181 --create --if-not-exists --topic picture-changed-signin --partitions 99 --replication- factor 3
-    ./bin/kafka-topics.sh --zookeeper zookeeper.kafka.svc.cluster.local:2181 --create --if-not-exists --topic new-media-order --partitions 99 --replication- factor 3
-    ./bin/kafka-topics.sh --zookeeper zookeeper.kafka.svc.cluster.local:2181 --create --if-not-exists --topic analytics-queues-work --partitions 99 --replication- factor 3
 
+    ./bin/kafka-topics.sh --zookeeper zookeeper.kafka.svc.cluster.local:2181 --create --if-not-exists --topic recognizer-best-effort --partitions 30 --replication-factor 3
+    ./bin/kafka-topics.sh --zookeeper zookeeper.kafka.svc.cluster.local:2181 --create --if-not-exists --topic recognition-results --partitions 30 --replication-factor 3
+    ./bin/kafka-topics.sh --zookeeper zookeeper.kafka.svc.cluster.local:2181 --create --if-not-exists --topic upload-requests --partitions 30 --replication-factor 3
+    ./bin/kafka-topics.sh --zookeeper zookeeper.kafka.svc.cluster.local:2181 --create --if-not-exists --topic new-web-images --partitions 30 --replication-factor 3
+    ./bin/kafka-topics.sh --zookeeper zookeeper.kafka.svc.cluster.local:2181 --create --if-not-exists --topic picture-changed --partitions 30 --replication-factor 3
+    ./bin/kafka-topics.sh --zookeeper zookeeper.kafka.svc.cluster.local:2181 --create --if-not-exists --topic analytics-queues-work --partitions 30 --replication-factor 3
+    ./bin/kafka-topics.sh --zookeeper zookeeper.kafka.svc.cluster.local:2181 --create --if-not-exists --topic new-transformations --partitions 30 --replication-factor 3
+    ./bin/kafka-topics.sh --zookeeper zookeeper.kafka.svc.cluster.local:2181 --create --if-not-exists --topic detect-response --partitions 30 --replication-factor 3
+    ./bin/kafka-topics.sh --zookeeper zookeeper.kafka.svc.cluster.local:2181 --create --if-not-exists --topic recognizer-real-time --partitions 5 --replication-factor 3
+    ./bin/kafka-topics.sh --zookeeper zookeeper.kafka.svc.cluster.local:2181 --create --if-not-exists --topic new-locations --partitions 5 --replication-factor 3
+    ./bin/kafka-topics.sh --zookeeper zookeeper.kafka.svc.cluster.local:2181 --create --if-not-exists --topic delete-file --partitions 5 --replication-factor 3
+    ./bin/kafka-topics.sh --zookeeper zookeeper.kafka.svc.cluster.local:2181 --create --if-not-exists --topic picture-removed --partitions 5 --replication-factor 3
+    ./bin/kafka-topics.sh --zookeeper zookeeper.kafka.svc.cluster.local:2181 --create --if-not-exists --topic new-video --partitions 5 --replication-factor 3
+    ./bin/kafka-topics.sh --zookeeper zookeeper.kafka.svc.cluster.local:2181 --create --if-not-exists --topic new-video-web --partitions 5 --replication-factor 3
+    ./bin/kafka-topics.sh --zookeeper zookeeper.kafka.svc.cluster.local:2181 --create --if-not-exists --topic new-signin-media --partitions 5 --replication-factor 3
+    ./bin/kafka-topics.sh --zookeeper zookeeper.kafka.svc.cluster.local:2181 --create --if-not-exists --topic add-user-domain --partitions 5 --replication-factor 3
+    ./bin/kafka-topics.sh --zookeeper zookeeper.kafka.svc.cluster.local:2181 --create --if-not-exists --topic picture-changed-signin --partitions 5 --replication-factor 3
+    ./bin/kafka-topics.sh --zookeeper zookeeper.kafka.svc.cluster.local:2181 --create --if-not-exists --topic new-media-order --partitions 5 --replication-factor 3
+    ./bin/kafka-topics.sh --zookeeper zookeeper.kafka.svc.cluster.local:2181 --create --if-not-exists --topic discard-tags --partitions 5 --replication-factor 3
+    ./bin/kafka-topics.sh --zookeeper zookeeper.kafka.svc.cluster.local:2181 --create --if-not-exists --topic tags-removed --partitions 5 --replication-factor 3
+    ./bin/kafka-topics.sh --zookeeper zookeeper.kafka.svc.cluster.local:2181 --create --if-not-exists --topic user-removed --partitions 5 --replication-factor 3
+    ./bin/kafka-topics.sh --zookeeper zookeeper.kafka.svc.cluster.local:2181 --create --if-not-exists --topic domain-changed --partitions 5 --replication-factor 3
+    ./bin/kafka-topics.sh --zookeeper zookeeper.kafka.svc.cluster.local:2181 --create --if-not-exists --topic log-stats --partitions 5 --replication-factor 3
+    ./bin/kafka-topics.sh --zookeeper zookeeper.kafka.svc.cluster.local:2181 --create --if-not-exists --topic new-tag --partitions 5 --replication-factor 3
+    ./bin/kafka-topics.sh --zookeeper zookeeper.kafka.svc.cluster.local:2181 --create --if-not-exists --topic slide-motion-end --partitions 5 --replication-factor 3
+    ./bin/kafka-topics.sh --zookeeper zookeeper.kafka.svc.cluster.local:2181 --create --if-not-exists --topic slide-motion-resolved --partitions 5 --replication-factor 3
+    ./bin/kafka-topics.sh --zookeeper zookeeper.kafka.svc.cluster.local:2181 --create --if-not-exists --topic slides-task --partitions 5 --replication-factor 3
+    ./bin/kafka-topics.sh --zookeeper zookeeper.kafka.svc.cluster.local:2181 --create --if-not-exists --topic stats-log --partitions 5 --replication-factor 3
+    ./bin/kafka-topics.sh --zookeeper zookeeper.kafka.svc.cluster.local:2181 --create --if-not-exists --topic knn-admin --partitions 5 --replication-factor 3
+    ./bin/kafka-topics.sh --zookeeper zookeeper.kafka.svc.cluster.local:2181 --create --if-not-exists --topic remove-domain --partitions 5 --replication-factor 3
+    ./bin/kafka-topics.sh --zookeeper zookeeper.kafka.svc.cluster.local:2181 --create --if-not-exists --topic clear-domain --partitions 5 --replication-factor 3
+    ./bin/kafka-topics.sh --zookeeper zookeeper.kafka.svc.cluster.local:2181 --create --if-not-exists --topic purge-user --partitions 5 --replication-factor 3
+    ./bin/kafka-topics.sh --zookeeper zookeeper.kafka.svc.cluster.local:2181 --create --if-not-exists --topic new-clip --partitions 5 --replication-factor 3
+    ./bin/kafka-topics.sh --zookeeper zookeeper.kafka.svc.cluster.local:2181 --create --if-not-exists --topic recognize-video --partitions 5 --replication-factor 3
+    ./bin/kafka-topics.sh --zookeeper zookeeper.kafka.svc.cluster.local:2181 --create --if-not-exists --topic recognize-video-result --partitions 5 --replication-factor 3
+    ./bin/kafka-topics.sh --zookeeper zookeeper.kafka.svc.cluster.local:2181 --create --if-not-exists --topic video-snapshots-ready --partitions 5 --replication-factor 3
+    ./bin/kafka-topics.sh --zookeeper zookeeper.kafka.svc.cluster.local:2181 --create --if-not-exists --topic media-changed --partitions 5 --replication-factor 3
+    ./bin/kafka-topics.sh --zookeeper zookeeper.kafka.svc.cluster.local:2181 --create --if-not-exists --topic features-request --partitions 5 --replication-factor 3
+    ./bin/kafka-topics.sh --zookeeper zookeeper.kafka.svc.cluster.local:2181 --create --if-not-exists --topic features-response --partitions 5 --replication-factor 3
 
     ./bin/kafka-topics.sh --zookeeper zookeeper.kafka.svc.cluster.local:2181 --list
-
-

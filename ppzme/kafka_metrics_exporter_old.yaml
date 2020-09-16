@@ -1,0 +1,90 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    custom: metrics
+  name: custom-metrics-kafka-exporter
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      custom: metrics
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        custom: metrics
+    spec:
+      containers:
+        - command:
+            - kafka_exporter
+            - --kafka.server=bootstrap.kafka:9092
+            - --refresh.metadata=10s
+          image: danielqsj/kafka-exporter
+          imagePullPolicy: Always
+          name: kafka-exporter
+          ports:
+            - containerPort: 9308
+              hostPort: 9308
+              name: http-metrics
+              protocol: TCP
+          readinessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /
+              port: 9308
+              scheme: HTTP
+            initialDelaySeconds: 5
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 5
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+        - command:
+            - /monitor
+            - --stackdriver-prefix=custom.googleapis.com
+            - --source=kafka-exporter:http://localhost:9308?whitelisted=kafka_brokers,kafka_topic_partitions,kafka_consumergroup_current_offset_sum,kafka_consumergroup_lag_sum
+            - --pod-id=$(POD_NAME)
+            - --namespace-id=$(POD_NAMESPACE)
+            - --scrape-interval=15s
+            - --export-interval=15s
+          env:
+            - name: POD_NAME
+              valueFrom:
+                fieldRef:
+                  apiVersion: v1
+                  fieldPath: metadata.name
+            - name: POD_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  apiVersion: v1
+                  fieldPath: metadata.namespace
+          image: gcr.io/google-containers/prometheus-to-sd:v0.5.2
+          imagePullPolicy: IfNotPresent
+          name: prometheus-to-sd
+          ports:
+            - containerPort: 6060
+              hostPort: 6060
+              name: profiler
+              protocol: TCP
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+      dnsPolicy: ClusterFirstWithHostNet
+      hostNetwork: true
+      nodeSelector:
+        cloud.google.com/gke-nodepool: monitoring
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+      tolerations:
+        - effect: NoSchedule
+          key: dedicated
+          operator: Equal
+          value: monitoring

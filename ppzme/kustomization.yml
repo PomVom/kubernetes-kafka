@@ -6,4 +6,7 @@ resources:
 patchesStrategicMerge:
 - kafka-node-selector.yml
 - zookeeper-node-selector.yml
-- volume-claims.yaml
+- kafka-resources.yaml
+- zoo-resources.yaml
+- volume-claims-kafka.yaml
+- volume-claims-zoo.yaml
