@@ -10,17 +10,19 @@ gcloud container clusters list
 gcloud container clusters describe "cluster name"
 
 # deploy custom metrics server
+kubectl apply -f ppzme/kafka_metrics_exporter.yaml (from ppzme folder)
 
 # use one of google user account to create a cluster role
-$ kubectl create clusterrolebinding cluster-admin-binding \
+kubectl create clusterrolebinding cluster-admin-binding \
     --clusterrole cluster-admin --user "$(gcloud config get-value account)"
 
-# deploy new resource model based APIs
-$ kubectl apply -f https://raw.githubusercontent.com/GoogleCloudPlatform/k8s-stackdriver/master/custom-metrics-stackdriver-adapter/deploy/production/adapter_new_resource_model.yaml
-
+# deploy new resource model based APIs (custom Metrics APIs)
+kubectl apply -f https://raw.githubusercontent.com/GoogleCloudPlatform/k8s-stackdriver/master/custom-metrics-stackdriver-adapter/deploy/production/adapter_new_resource_model.yaml
+or
+kubectl apply -f ppzme/resource_model_metrics.yaml (from ppzme folder)
 
 # custom Metrics APIs verification
-$  kubectl get all -n custom-metrics
+kubectl get all -n custom-metrics
 
 kubectl api-versions (should return custom.metrics.k8s.io/v1beta1 - for custom Kubernetes metrics
 and external.metrics.k8s.io/v1beta1 - for external metrics)
@@ -29,13 +31,6 @@ and external.metrics.k8s.io/v1beta1 - for external metrics)
 kubectl get --raw "/apis/external.metrics.k8s.io/v1beta1" | jq
 kubectl get --raw "/apis/custom.metrics.k8s.io/v1beta1" | jq
 
-# deploy metrics exporter and writer to stackdriver
-kubectl apply -f ./ppzme/kafka_metrics_exporter.yaml
-
-
 # check installation
 kubectl get --raw "/apis/external.metrics.k8s.io/v1beta1/namespaces/default/custom.googleapis.com|kafka-exporter|kafka_brokers" | jq
 kubectl get --raw "/apis/external.metrics.k8s.io/v1beta1/namespaces/default/custom.googleapis.com|kafka-exporter|kafka_consumergroup_lag_sum" | jq
-
-
-
