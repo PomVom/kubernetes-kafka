@@ -48,5 +48,9 @@ data:
     ./bin/kafka-topics.sh --zookeeper zookeeper.kafka.svc.cluster.local:2181 --create --if-not-exists --topic media-changed --partitions 5 --replication-factor 3
     ./bin/kafka-topics.sh --zookeeper zookeeper.kafka.svc.cluster.local:2181 --create --if-not-exists --topic features-request --partitions 5 --replication-factor 3
     ./bin/kafka-topics.sh --zookeeper zookeeper.kafka.svc.cluster.local:2181 --create --if-not-exists --topic features-response --partitions 5 --replication-factor 3
+    ./bin/kafka-topics.sh --zookeeper zookeeper.kafka.svc.cluster.local:2181 --create --if-not-exists --topic slides-event --partitions 5 --replication-factor 3
+    ./bin/kafka-topics.sh --zookeeper zookeeper.kafka.svc.cluster.local:2181 --create --if-not-exists --topic recognize-video-test --partitions 5 --replication-factor 3
+    ./bin/kafka-topics.sh --zookeeper zookeeper.kafka.svc.cluster.local:2181 --create --if-not-exists --topic clip-uploaded --partitions 5 --replication-factor 3
+    ./bin/kafka-topics.sh --zookeeper zookeeper.kafka.svc.cluster.local:2181 --create --if-not-exists --topic upload-clip --partitions 5 --replication-factor 3
 
     ./bin/kafka-topics.sh --zookeeper zookeeper.kafka.svc.cluster.local:2181 --list
