@@ -36,3 +36,13 @@ kubectl get --raw "/apis/custom.metrics.k8s.io/v1beta1" | jq
 # check installation
 kubectl get --raw "/apis/external.metrics.k8s.io/v1beta1/namespaces/default/custom.googleapis.com|kafka-exporter|kafka_brokers" | jq
 kubectl get --raw "/apis/external.metrics.k8s.io/v1beta1/namespaces/default/custom.googleapis.com|kafka-exporter|kafka_consumergroup_lag_sum" | jq
+
+
+CONNECT TO KAFKA CLUSTER OR ADD/DELETE NEW TOPIC
+kubectl --namespace=kafka exec kafka-0 -c broker -ti -- sh
+
+list topics
+unset JMX_PORT; bin/kafka-topics.sh --bootstrap-server localhost:9092 --list
+
+//add new topic
+./bin/kafka-topics.sh --zookeeper zookeeper.kafka.svc.cluster.local:2181 --create --if-not-exists --topic update-tag --partitions 5 --replication-factor 3
