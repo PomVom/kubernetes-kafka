@@ -5,6 +5,8 @@ kubectl apply -k ppzme/
 //enable kafka monitoring
 https://medium.com/google-cloud/kubernetes-hpa-autoscaling-with-kafka-metrics-88a671497f07
 
+or follow:
+
 # check if cluster has monitoring permissions (oauthScopes: https://www.googleapis.com/auth/monitoring )
 gcloud container clusters list
 gcloud container clusters describe "cluster name"
