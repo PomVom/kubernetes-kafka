@@ -53,6 +53,7 @@ data:
     ./bin/kafka-topics.sh --zookeeper zookeeper.kafka.svc.cluster.local:2181 --create --if-not-exists --topic media-change --partitions 5 --replication-factor 3
     ./bin/kafka-topics.sh --zookeeper zookeeper.kafka.svc.cluster.local:2181 --create --if-not-exists --topic media-associations-change --partitions 5 --replication-factor 3
     ./bin/kafka-topics.sh --zookeeper zookeeper.kafka.svc.cluster.local:2181 --create --if-not-exists --topic user-accounts-change --partitions 5 --replication-factor 3
+    ./bin/kafka-topics.sh --zookeeper zookeeper.kafka.svc.cluster.local:2181 --create --if-not-exists --topic user-accounts-removed --partitions 5 --replication-factor 3
     ./bin/kafka-topics.sh --zookeeper zookeeper.kafka.svc.cluster.local:2181 --create --if-not-exists --topic new-signin --partitions 5 --replication-factor 3
     ./bin/kafka-topics.sh --zookeeper zookeeper.kafka.svc.cluster.local:2181 --create --if-not-exists --topic new-transaction --partitions 5 --replication-factor 3
     ./bin/kafka-topics.sh --zookeeper zookeeper.kafka.svc.cluster.local:2181 --create --if-not-exists --topic scan-media --partitions 5 --replication-factor 3
